@@ -4,7 +4,7 @@ use common::TestEnv;
 use std::str;
 
 #[test]
-fn test_init_command() {
+fn test_general_workflow() {
     let test_env = TestEnv::new();
 
     // Init.
@@ -121,22 +121,22 @@ fn test_switch_with_force() {
 fn test_remove_current_profile() {
     let test_env = TestEnv::new();
 
-    // Initialize
+    // Initialize.
     let output = test_env.run_command(&["init"]);
     assert!(output.status.success());
 
-    // Create and switch to a profile
+    // Create and switch to a profile.
     let output = test_env.run_command(&["create", "dev"]);
     assert!(output.status.success());
 
     let output = test_env.run_command(&["switch", "dev"]);
     assert!(output.status.success());
 
-    // Remove the current profile
+    // Remove the current profile.
     let output = test_env.run_command(&["remove", "dev"]);
     assert!(output.status.success());
 
-    // Verify no current profile
+    // Verify no current profile.
     let output = test_env.run_command(&["current"]);
     assert!(!output.status.success());
 }
